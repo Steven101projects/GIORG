@@ -1,0 +1,92 @@
+/* reset & box‐sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* full‐page flex centering */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  background: #fff;
+}
+
+/* big bold heading, centered */
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+/* the yellow rounded textbox */
+#answer {
+  width: 300px;           /* adjust as needed */
+  max-width: 80vw;        /* stays responsive on small screens */
+  height: 60px;           
+  border: none;
+  border-radius: 30px;    /* pill shape */
+  background: #ffe261;
+  font-size: 1.5rem;
+  text-align: center;     /* text in the middle */
+  outline: none;
+}
+
+/* hidden by default, will appear when you set .style.display in JS */
+#damn {
+  display: none;
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #111;
+  line-height: 1.4;
+}
+/* Full‐screen white overlay */
+#gameRules {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  z-index: 9999;
+  text-align: center;
+}
+
+/* Large black heading */
+#gameRules h2 {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.2;
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
+/* “READY? CLICK THIS” styled as big red text */
+#gameRules button#g {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e63946;        /* bright red */
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#gameRules button#g:hover {
+  transform: scale(1.05);
+}
