@@ -7,18 +7,13 @@
     <title>FIND ME GIORGIA LOL</title>
 </head>
 <body>
+<audio id="bgMusic" src="bggmusic.mp3"></audio>
+<audio id="countdown" src="cnt.mp3"></audio>
+<audio id="oof" src="oof.mp3"></audio>
+<audio id="bday" src="birthday.mp3"></audio>
   <div class="scene">
       <div id="timer">60</div>
 <div class="lives">
-  <span class="heart">❤️</span>
-  <span class="heart">❤️</span>
-  <span class="heart">❤️</span>
-    <span class="heart">❤️</span>
-      <span class="heart">❤️</span>
-        <span class="heart">❤️</span>
-          <span class="heart">❤️</span>
-            <span class="heart">❤️</span>
-              <span class="heart">❤️</span>
 </div>
       <div class="house">
           <div class="roof"></div>
@@ -41,11 +36,18 @@
   <p id="winner">Nico Wins! 😈</p>
   <button id="retry">TRY AGAIN</button>
 </section>
-<section id="youWin">
-  <h2>You Win!</h2>
-  <p id="winMessage">Congratulations – you found Giorgia!</p>
-  <button id="nextLevel">THANK YOU</button>
+
+<section id="youWin" class="hide">   <!-- remove "hide" if you want it visible by default -->
+  <header class="win-banner">
+    <h2>🎉🎈<span>You Win!</span>🎈🎉</h2>
+  </header>
+
+  <div class="win-card">
+  </div>
 </section>
+<!-- “That’s too easy” box -->
+<div id="easyBox"></div>
+
 </body>
 <script src="game.js"></script>
 </html>

@@ -198,51 +198,96 @@
 /* ------------------------------------------------------------
    You Win modal (hidden by default)
    ------------------------------------------------------------ */
+/* ─────────────────────────────────────────────────────────────
+   YOU-WIN MODAL  ––  fills the entire viewport with the picture
+   ───────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   YOU WIN  – full-screen modal built with HTML/CSS only
+   ───────────────────────────────────────────────────────────── */
 #youWin {
   position: fixed;
-  inset: 0;                          /* cover the entire viewport */
-  background: rgba(0, 0, 0, 0.85);   /* dark translucent backdrop */
-  display: none;                     /* toggle to flex via JS */
+  inset: 0;                       /* cover the whole viewport */
+  z-index: 10001;                 /* above #gameOver (10 000) */
+  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  /* Background: top diagonal gradient, bottom green “ground”  */
+  background: linear-gradient(135deg, #fffbc8 0%, #c8eed7 35%, #29a8ff 100%);
+}
+
+#youWin::after {                  /* green strip at the bottom */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: #3aa20d;
+}
+
+/* Optional utility classes to fade in/out from JS */
+#youWin.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#youWin.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ─── Gradient banner with “You Win!” ─── */
+.win-banner {
+  width: 100%;
   text-align: center;
-  padding: 2rem;
-  box-sizing: border-box;
-  z-index: 10000;                    /* on top of everything */
-  font-family: "Segoe UI", sans-serif;
-  color: #fff;
+  padding: 1.4rem 0 3rem;
+}
+.win-banner h2 {
+  margin: 0;
+  font: 700 2.75rem/1 "Segoe UI", sans-serif;
+  color: #ffffff;
 }
 
-/* Big congratulatory heading in green */
-#youWin h2 {
-  font-size: 4rem;
-  font-weight: 700;
-  color: #2ecc71;                    /* victory green */
-  margin-bottom: 1rem;
+/* ─── White card in the middle ─── */
+.win-card {
+  position: relative;
+  width: 70vw;
+  height: 360px;
+  margin-top: -1rem;              /* pull upward into banner */
+  background: #ffffff;
+  border-radius: 2.6rem;
+  padding: 3.5rem 2.5rem 3rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: "Georgia", serif;
+  background-size: cover;
+  background-image: url('200.png');
+}
+/* ─────────────────────────────────────────────────────────────
+   “That’s too easy” message box (bottom-right of the scene)
+   ───────────────────────────────────────────────────────────── */
+#easyBox {
+  display: none;
+  position: absolute;
+  bottom: 135px;          /* tweak until it aligns exactly for your layout */
+  right: 80px;            /* tweak as needed */
+  width: 230px;
+  padding: 2rem 1.5rem;
+  background: #ffffff;
+  border: 2px solid #000000;
+  font: 600 1.55rem/1.3 "Segoe UI", sans-serif;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  pointer-events: none;   /* box is decorative; clicks pass through */
+  z-index: 5;             /* sits above house but below modals */
 }
 
-/* Sub-message */
-#youWin #winMessage {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+/* Optional: shrink message on smaller screens */
+@media (max-width: 600px) {
+  #easyBox {
+    width: 160px;
+    padding: 1.2rem 1rem;
+    font-size: 1.1rem;
+  }
 }
 
-/* Next Level button */
-#youWin #nextLevel {
-  background: none;
-  border: 2px solid #2ecc71;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #2ecc71;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-#youWin #nextLevel:hover {
-  background: #2ecc71;
-  color: #111;
-  transform: scale(1.05);
-}
