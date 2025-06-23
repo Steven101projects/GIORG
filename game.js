@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+stopAllAudio();
 gameSetup();
 audio();
 
@@ -11,7 +11,7 @@ const livesContainer = document.querySelector('.lives');
 
 
 var time = document.getElementById("timer");
-let timeLeft = 60;
+let timeLeft;
 let lives = 9;
 
 // Update the display to show mm:ss
@@ -37,7 +37,7 @@ function renderHearts(count) {
 
 function gameSetup() {
     renderHearts(lives);
-timeLeft = 60;
+    time.textContent = "60";
     let countdown = 3;
     let i = 0;
     let readySetGo = setInterval(() => {
@@ -55,18 +55,18 @@ timeLeft = 60;
                 w.classList.remove("highlight");
                 w.style.backgroundImage = 'none';
             }
+            whackANico();
         }
-    }, 1000);
-    setTimeout(whackANico, 3000);
+    }, 800);
 }
-function Time() {
+function Time(timeLeft) {
 
     updateDisplay(timeLeft);
 
-    // Every second, decrease and refresh
-    const timerId = setInterval(() => {
+
+const timerId = setInterval(() => {
         timeLeft--;
-        if (timeLeft < 0) {
+        if (timeLeft <= 0 || lives === 0) {
             clearInterval(timerId);
             return;
         }
@@ -81,7 +81,8 @@ function showWin() {
   document.getElementById('bday').play();
 };
 function whackANico() {
-    Time();
+    timeLeft = 60;
+    Time(timeLeft);
 
     let game = setInterval(() => {
     const rnd = Math.floor(Math.random() * 10);
@@ -153,7 +154,7 @@ document.getElementById('retry').addEventListener("click", function(){
     document.getElementById("gameOver").style.display = "none";
     lives = 9;
     gameSetup();
-})
+});
 
 
 function audio(){
