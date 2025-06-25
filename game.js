@@ -103,9 +103,12 @@ function whackANico() {
       windows[rnd].removeChild(winImg);
       if (!safe) {
         lives--;
+        if(lives === 8){
+          document.getElementById('random').play();
+        }
         renderHearts(lives);
       }
-    }, 880);
+    }, 700);
 
     // 3) update “easyBox” messages
     const msgBox = document.getElementById('easyBox');
