@@ -8,7 +8,7 @@ const windows = Array.from(document.querySelectorAll(".window"));
 const livesContainer = document.querySelector('.lives');
 const timerEl       = document.getElementById("timer");
 
-let timeLeft = 60;
+let timeLeft = 40;
 let lives    = 9;
 let timerId;  // for our countdown interval
 
@@ -33,7 +33,7 @@ function renderHearts(count) {
 
 function gameSetup() {
   lives     = 9;
-  timeLeft  = 50;
+  timeLeft  = 40;
   renderHearts(lives);
   updateDisplay(timeLeft);
 
@@ -80,7 +80,7 @@ function startTimer() {
 
 function whackANico() {
   // give player 10 seconds in the actual “whack” phase
-  timeLeft = 50;
+  timeLeft = 40;
   updateDisplay(timeLeft);
   startTimer();
 
