@@ -33,7 +33,7 @@ function renderHearts(count) {
 
 function gameSetup() {
   lives     = 9;
-  timeLeft  = 60;
+  timeLeft  = 50;
   renderHearts(lives);
   updateDisplay(timeLeft);
 
@@ -80,7 +80,7 @@ function startTimer() {
 
 function whackANico() {
   // give player 10 seconds in the actual “whack” phase
-  timeLeft = 60;
+  timeLeft = 50;
   updateDisplay(timeLeft);
   startTimer();
 
@@ -117,7 +117,7 @@ function whackANico() {
     else if (lives === 3) { moveEasyBox(); msgBox.textContent = "i'm just here!";         msgBox.style.display = "inline-block"; }
     else if (lives === 2) { moveEasyBox(); msgBox.textContent = "where is your uno luck?"; msgBox.style.display = "inline-block"; }
     else                  { msgBox.style.display = "none"; }
-    if (timeLeft === 30 && lives > 0) {
+    if (timeLeft === 10 && lives > 0) {
       moveEasyBox();
       msgBox.textContent = "holy shit i'm losing this";
       msgBox.style.display = "inline-block";
@@ -202,3 +202,9 @@ function moveEasyBox() {
 
   box.style.display = prev;
 }
+document.getElementById('door').addEventListener('click',
+  function(){
+    window.location.href = "bday.html";
+  }
+);
+

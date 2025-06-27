@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bday.css">
+    <title>HAPPY BIRTHDAY!!</title>
+</head>
+<body>
+<div id="body">
+<div id="message">
+    <span id="typed"></span>
+    <span class="cursor">|</span>
+</div>
+
+
+<div id="gift"></div>
+</div>
+<div id="pizzaMsg" class="cloud">
+    Here is the pizza ma'am, nice and hot,<br>
+    perfect just like you!
+</div>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    var text = `oh hi, you win! I hope you enjoyed the game, hshs.. sorry for 
+    this is such a little effort, but i hope you enjoyed it still... 
+i appreciate you a lot! ur such a pure creature.. anyone who will love you will be blessed for real... ur a keeper
+anyways celebrate ur life u young gal!
+u are so beautiful, 
+    glad to have you in this earth.. happy birthday... 
+oh btw.. i made you some pizza there...click the gift..
+happy 23!`;
+
+    const output = document.getElementById("typed");
+    const cursor = document.querySelector(".cursor");
+
+    let index = 0;
+
+    /** Return a delay (ms) that feels like human typing. */
+    function nextDelay(char){
+        // base jitter: 30 – 80 ms
+        let delay = 30 + Math.random() * 50;
+
+        // linger a bit on punctuation or line breaks
+        if(/[.,!?]/.test(char))   delay += 250 + Math.random() * 150;
+        if(char === "\n")         delay += 400 + Math.random() * 200;
+
+        return delay;
+    }
+
+    function typeNext(){
+        if(index < text.length){
+            const char = text.charAt(index++);
+            output.textContent += char;
+            setTimeout(typeNext, nextDelay(char));
+        }else{
+            cursor.style.display = "none"; // done, hide blinking bar
+        }
+    }
+
+    typeNext();
+});
+
+document.getElementById('gift').addEventListener('click', function(){
+
+    document.querySelector('.cloud').style.display = "flex";
+ 
+    /* wrapper keeps plate and pizza together,
+       making it easy to position and preventing
+       extra clicks from grabbing the images */
+    const set = document.createElement('div');
+    set.id = 'pizza-set';
+    set.style.position = 'absolute';
+    set.style.left  = '80%';   // ⬅︎ move the whole set
+    set.style.top   = '100%';
+    set.style.transform = 'translate(-50%, -50%)';
+    set.style.pointerEvents = 'none';   // clicks pass through
+
+    /* plate (goes below) */
+    const plate = document.createElement('img');
+    plate.src  = 'plate.png';    // update with your file path
+    plate.alt  = 'Plate';
+    plate.style.width  = '260px';
+    plate.style.display = 'block';      // ensures pizza sits on top
+
+    /* pizza (sits on the plate) */
+    const pizza = document.createElement('img');
+    pizza.src  = 'pizza.png';    // update with your file path
+    pizza.alt  = 'Pizza';
+    pizza.style.width  = '220px';
+    pizza.style.position = 'absolute';
+    pizza.style.left  = '50%';
+    pizza.style.top   = '50%';
+    pizza.style.transform = 'translate(-50%, -50%)';
+
+    /* assemble and add to the page */
+    set.appendChild(plate);
+    set.appendChild(pizza);
+    document.body.appendChild(set);
+})
+</script>
+
+</html>
